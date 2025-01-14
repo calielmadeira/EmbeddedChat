@@ -2,18 +2,23 @@
 <html lang="en">
 <head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
 <body>
-    <h1>teste</h1>
+    <h1>teste em dev</h1>
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
                 embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
     
+                window.addEventListener("onEmbeddedMessagingReady", () => {            
+                    console.log( "Inside Prechat API!!" );
+                    embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "cpf" : "Test123" } );
+                    });
+
                 embeddedservice_bootstrap.init(
-                    '00D6g0000054aoB',
-                    'teste2vamo',
-                    'https://euqueroinvestir.my.site.com/ESWteste2vamo1736800911459',
+                    '00D89000002kFHR',
+                    'testPreChat',
+                    'https://euqueroinvestir--devcalica.sandbox.my.site.com/ESWtestPreChat1736883213967',
                     {
-                        scrt2URL: 'https://euqueroinvestir.my.salesforce-scrt.com'
+                        scrt2URL: 'https://euqueroinvestir--devcalica.sandbox.my.salesforce-scrt.com'
                     }
                 );
             } catch (err) {
@@ -21,6 +26,6 @@
             }
         };
     </script>
-    <script type='text/javascript' src='https://euqueroinvestir.my.site.com/ESWteste2vamo1736800911459/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    <script type='text/javascript' src='https://euqueroinvestir--devcalica.sandbox.my.site.com/ESWtestPreChat1736883213967/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>    
 </body>
 </html>
