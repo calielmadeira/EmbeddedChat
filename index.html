@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <body>
     <script type='text/javascript'>        
         function initEmbeddedMessaging() {
@@ -14,7 +9,7 @@
         console.log( "Inside Prechat API!!" );
         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields( { "cpf" : "Test123" } );
         });
-        window.addEventListener("onEmbeddedMessagingReady", e => {
+        /*window.addEventListener("onEmbeddedMessagingReady", e => {
             //log event
             console.log("onEmbeddedMessagingReady event triggered");
             
@@ -31,7 +26,7 @@
                   "isEditableByEndUser": false
                 }
             });
-        });
+        });*/
                 embeddedservice_bootstrap.init(
                     '00D6g0000054aoB',
                     'teste2vamo',
