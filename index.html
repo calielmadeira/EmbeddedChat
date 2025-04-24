@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
 <body>
-    <h1>teste em devCalica 17:39</h1> <br/>
+    <h1>teste em devCalica 17:56</h1> <br/>
     <button id="launchChatButton" onclick="launchChat()">
       Chat with our Agents!!!
     </button>
@@ -55,9 +55,23 @@
                       cpfCnpj: user.document,
 			                action: "Câmbio"
                     });
-                    setTimeout(() => {
-                      launchChat();
-                  }, 1000);
+                    setTimeout(function() {
+                // Anonymous function that calls launchChat
+                console.log('Launching chat after 1 second...');
+                embeddedservice_bootstrap.utilAPI.launchChat()
+                    .then(() => {
+                        // Success handler
+                        disableLaunchChatButton();
+                    })
+                    .catch(() => {
+                        // Error handler
+                        hideLaunchChatButton();
+                    })
+                    .finally(() => {
+                        // Final action
+                        logEndUserAttemptToChat();
+                    });
+            }, 1000);
                   });
 
                 embeddedservice_bootstrap.init(
