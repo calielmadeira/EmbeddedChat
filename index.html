@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
 <body>
-    <h1>teste em devCalica 17:28</h1> <br/>
+    <h1>teste em devCalica 17:30</h1> <br/>
     <button id="launchChatButton" onclick="launchChat()">
       Chat with our Agents!!!
     </button>
@@ -16,6 +16,11 @@
           // You can add real logging logic here later
           console.log('User attempted to launch chat.');
       }
+
+      function hideLaunchChatButton() {
+        // You can add real logging logic here later
+        console.log('User attempted to launch chat, but failed.');
+    }
 
         function launchChat() {
           embeddedservice_bootstrap.utilAPI.launchChat()
