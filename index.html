@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
 <body>
-    <h1>teste em devCalica 16:40</h1>
+    <h1>teste em devCalica 16:45</h1>
     <script type='text/javascript'>
         var user ={}
         user.document = '872.574.177-25'
@@ -42,13 +42,16 @@
 					scrt2URL: 'https://euqueroinvestir--devcalica.sandbox.my.salesforce-scrt.com'
                     }
                 );
-		    embedded_svc.bootstrapEmbeddedService();
 
             } catch (err) {
                 console.error('Error loading Embedded Messaging: ', err);
             }
         };
 
+        embedded_svc.addEventHandler("onSettingsCallCompleted", function(data) {
+          console.log("onSettingsCallCompleted event was fired. Agent availability status is " + data.isAgentAvailable ? "online": "offline");
+          embedded_svc.bootstrapEmbeddedService();
+      });
     </script>
     <script type='text/javascript' src='https://euqueroinvestir--devcalica.sandbox.my.site.com/ESWAtendimentoaoCliente1734101002103/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
