@@ -2,93 +2,83 @@
 <html lang="en">
 <head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
 <body>
-    <h1>teste em devCalica 17:56</h1> <br/>
-    <button id="launchChatButton" onclick="launchChat()">
+    <h1>teste em devCalica 13/06</h1> <br/>
+    <button id="clickMe">
       Chat with our Agents!!!
     </button>
-    <script type='text/javascript'>
-        var user ={}
-        user.document = '872.574.177-25'
-        user.name = 'Calica'
-        user.email = 'caliel.madeira@eqi.com.br'
+    <style type='text/css'>
+	.embeddedServiceHelpButton .helpButton .uiButton {
+		background-color: #005290;
+		font-family: "Arial", sans-serif;
+	}
+	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+		outline: 1px solid #005290;
+	}
+</style>
 
-        function launchChat() {
-          embeddedservice_bootstrap.utilAPI.launchChat()
-              .then(() => {
-                  // Success handler used to perform actions
-                  // when the chat client launches successfully.
-                  // For example, create a method that disables the launch chat button.
-                  console.log('then')
-              }).catch(() => {
-                  // Error handler used to perform actions
-                  // if the chat client fails to launch.
-                  // For example, create a method that hides the launch chat button.
-                  console.log('caiu em catch')
-              }).finally(() => {
-                  // Finally handler used to perform any clean-up actions
-                  // regardless of whether the chat client launches successfully or not.
-                  // For example, create a method that logs the user’s attempt to chat.
-                  console.log('Deu boa')
-              });
-      }
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = 'en'; //For example, enter 'en' or 'en-US'
 
-        function initEmbeddedMessaging() {
-            try {
-                embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
+		embedded_svc.settings.defaultMinimizedText = 'Teste'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+		embedded_svc.settings.loadingText = 'Carregando'; //(Defaults to Loading)
+		embedded_svc.settings.storageDomain = 'euqueroinvestir--devcalica--c.sandbox.vf.force.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		embedded_svc.settings.offlineSupportMinimizedText = 'Mini'; //(Defaults to Contact Us)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.init(
+			'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com',
+			'https://euqueroinvestir--devcalica.sandbox.my.site.com/dev',
+			gslbBaseURL,
+			'00Dbe000001Oj9t',
+			'TestPostman',
+			{
+				baseLiveAgentContentURL: 'https://c.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/content',
+				deploymentId: '5724V0000010zOf',
+				buttonId: '573be0000004fm9',
+				baseLiveAgentURL: 'https://d.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'TestPostman',
+				isOfflineSupportEnabled: true
+			}
+		);
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+        console.log('https://service.force.com');
+		initESW('https://service.force.com');
+	}
     
-                window.addEventListener('onEmbeddedMessagingReady', (e) => {
-                    window.embeddedservice_bootstrap?.prechatAPI.setVisiblePrechatFields({
-                      _firstName: {
-                        value: user.name ?? 'Usuario sem nome',
-                        isEditableByEndUser: false,
-                      },
-                      _lastName: {
-                        value: user.name ?? 'Usuario sem nome',
-                        isEditableByEndUser: false,
-                      },
-                      _email: {
-                        value: user.email,
-                        isEditableByEndUser: false,
-                      },
-                    });
-                    window.embeddedservice_bootstrap?.prechatAPI.setHiddenPrechatFields({
-                      cpfCnpj: user.document,
-			                action: "Câmbio"
-                    });
-                    setTimeout(function() {
-                // Anonymous function that calls launchChat
-                console.log('Launching chat after 1 second...');
-                embeddedservice_bootstrap.utilAPI.launchChat()
-                    .then(() => {
-                        // Success handler
-                        disableLaunchChatButton();
-                    })
-                    .catch(() => {
-                        // Error handler
-                        hideLaunchChatButton();
-                    })
-                    .finally(() => {
-                        // Final action
-                        logEndUserAttemptToChat();
-                    });
-            }, 1000);
-                  });
-
-                embeddedservice_bootstrap.init(
-                    '00Dbe000001Oj9t',
-				'Atendimento_ao_Cliente_EQI_App_prod',
-				'https://euqueroinvestir--devcalica.sandbox.my.site.com/ESWAtendimentoaoCliente1734101002103',
-				{
-					scrt2URL: 'https://euqueroinvestir--devcalica.sandbox.my.salesforce-scrt.com'
-                    }
-                );
-
-            } catch (err) {
-                console.error('Error loading Embedded Messaging: ', err);
-            }
+    function bootstrapChat() {
+        console.log('clicou');
+		embedded_svc.bootstrapEmbeddedService();
+	}
+    //tenta abrir chat por listener
+    window.onload = function() {
+            document.getElementById('clickMe').addEventListener('click', function() {
+                bootstrapChat();
+            });
         };
-
-    </script>
-    <script type='text/javascript' src='https://euqueroinvestir--devcalica.sandbox.my.site.com/ESWAtendimentoaoCliente1734101002103/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+</script>
 </body>
 </html>
