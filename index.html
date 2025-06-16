@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"></head>
 <body>
-    <h1>teste em devCalica 16/06 15:53</h1> <br/>
+    <h1>teste em devCalica 16/06 16:03</h1> <br/>
     <button id="clickMe">
       Chat with our Agents!!!
     </button>
@@ -20,18 +20,20 @@
   window.embedded_svc = window.embedded_svc || {};
 
   function initChat(gslbBaseURL) {
-    embedded_svc.settings.displayHelpButton = true; // Mostra o botão de chat
-    embedded_svc.settings.language = 'pt-BR'; // ou 'en-US'
+    // Garantir que settings esteja definido antes de usar
+    embedded_svc.settings = embedded_svc.settings || {};
 
+    embedded_svc.settings.displayHelpButton = true;
+    embedded_svc.settings.language = 'pt-BR';
     embedded_svc.settings.enabledFeatures = ['LiveAgent'];
     embedded_svc.settings.entryFeature = 'LiveAgent';
 
     embedded_svc.init(
-      'https://euqueroinvestir--devcalica.sandbox.my.salesforce-scrt.com', // dom Salesforce
-      'https://euqueroinvestir--devcalica.sandbox.my.site.com', // dom Experience Site (corrigido)
+      'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com',
+      'https://euqueroinvestir--devcalica.sandbox.my.site.com',
       gslbBaseURL,
-      '00Dbe000001Oj9t', // ID da organização
-      'TestPostman', // Nome do deployment
+      '00Dbe000001Oj9t',
+      'TestPostman',
       {
         baseLiveAgentContentURL: 'https://c.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/content',
         deploymentId: '5724V0000010zOf',
@@ -47,7 +49,7 @@
     var script = document.createElement('script');
     script.setAttribute('src', 'https://euqueroinvestir--devcalica.sandbox.lightning.force.com/embeddedservice/5.0/esw.min.js');
     script.onload = function () {
-      initChat(null); // chamando sua função, não embedded_svc.init diretamente
+      initChat(null);
     };
     document.body.appendChild(script);
   })();
