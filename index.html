@@ -16,43 +16,31 @@
 	}
 </style>
 
-<script>
-  window.embedded_svc = window.embedded_svc || {};
+<script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		// Required if you want labels in a language that’s different from your user’s context.
+		//embedded_svc.menu.settings.language = ''; //For example, enter 'en' or 'en-US'
 
-  function initChat(gslbBaseURL) {
-    // Garantir que settings esteja definido antes de usar
-    embedded_svc.settings = embedded_svc.settings || {};
+		embedded_svc.menu.init(
+			'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com',
+			'https://d.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/chat',
+			gslbBaseURL,
+			'00Dbe000001Oj9t',
+			'EqiTech'
+		);
+	};
 
-    embedded_svc.settings.displayHelpButton = true;
-    embedded_svc.settings.language = 'pt-BR';
-    embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-    embedded_svc.settings.entryFeature = 'LiveAgent';
-
-    embedded_svc.init(
-      'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com',
-      'https://euqueroinvestir--devcalica.sandbox.my.site.com',
-      gslbBaseURL,
-      '00Dbe000001Oj9t',
-      'TestPostman',
-      {
-        baseLiveAgentContentURL: 'https://c.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/content',
-        deploymentId: '572be000000cyWD',
-        buttonId: '573be0000004fm9',
-        baseLiveAgentURL: 'https://d.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/chat',
-        eswLiveAgentDevName: 'TestPostman',
-        isOfflineSupportEnabled: false
-      }
-    );
-  }
-
-  (function () {
-    var script = document.createElement('script');
-    script.setAttribute('src', 'https://euqueroinvestir--devcalica.sandbox.lightning.force.com/embeddedservice/5.0/esw.min.js');
-    script.onload = function () {
-      initChat(null);
-    };
-    document.body.appendChild(script);
-  })();
+	if (!window.embedded_svc || !window.embedded_svc.menu) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com/embeddedservice/menu/fab.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+	}
 </script>
 
 
