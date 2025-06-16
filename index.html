@@ -18,7 +18,8 @@
 
 <script>
   window.embedded_svc = window.embedded_svc || {};
-  window.embedded_svc.init = function (gslbBaseURL) {
+
+  function initChat(gslbBaseURL) {
     embedded_svc.settings.displayHelpButton = true; // Mostra o botão de chat
     embedded_svc.settings.language = 'pt-BR'; // ou 'en-US'
 
@@ -27,7 +28,7 @@
 
     embedded_svc.init(
       'https://euqueroinvestir--devcalica.sandbox.my.salesforce-scrt.com', // dom Salesforce
-      'euqueroinvestir--devcalica.sandbox.my.site.force.com', // dom Experience Site
+      'https://euqueroinvestir--devcalica.sandbox.my.site.com', // dom Experience Site (corrigido)
       gslbBaseURL,
       '00Dbe000001Oj9t', // ID da organização
       'TestPostman', // Nome do deployment
@@ -40,17 +41,18 @@
         isOfflineSupportEnabled: false
       }
     );
-  };
+  }
 
   (function () {
     var script = document.createElement('script');
     script.setAttribute('src', 'https://euqueroinvestir--devcalica.sandbox.lightning.force.com/embeddedservice/5.0/esw.min.js');
     script.onload = function () {
-      embedded_svc.init(null);
+      initChat(null); // chamando sua função, não embedded_svc.init diretamente
     };
     document.body.appendChild(script);
   })();
 </script>
+
 
 </body>
 </html>
