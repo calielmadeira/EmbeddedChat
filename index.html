@@ -29,19 +29,11 @@
     embedded_svc.settings.entryFeature = 'LiveAgent';
 
     embedded_svc.init(
-      'https://euqueroinvestir--devcalica.sandbox.my.salesforce.com',
-      'https://euqueroinvestir--devcalica.sandbox.my.site.com',
-      gslbBaseURL,
-      '00Dbe000001Oj9t',
-      'TestPostman',
-      {
-        baseLiveAgentContentURL: 'https://c.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/content',
-        deploymentId: '572be000000cyWD',
-        buttonId: '573be0000004fm9',
-        baseLiveAgentURL: 'https://d.la12s-core1.sfdc-xwy4ub.salesforceliveagent.com/chat',
-        eswLiveAgentDevName: 'TestPostman',
-        isOfflineSupportEnabled: false
-      }
+	{
+	  "OrganizationId": "00Dbe000001Oj9t",
+	  "DeveloperName": "TestPostman",
+	  "Url": "https://euqueroinvestir--devcalica.sandbox.my.salesforce-scrt.com"
+	}
     );
   }
 
